@@ -14,4 +14,7 @@ public class Film {
 	
 		//another comment
 		//another comment
+	public static void main(String[] args) {
+		System.out.println("Merge conflict");
+	}
 }
