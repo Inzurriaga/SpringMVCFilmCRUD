@@ -14,14 +14,4 @@ public class Film {
 	
 		//another comment
 		//another comment
-		//another comment
-	//comment
-	
-		//another comment
-		//another comment
-		//another comment
-	
-	//another comment
-	//another comment
-	//another comment
 }
