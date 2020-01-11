@@ -17,7 +17,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	static {
 		try {
-			Class.forName("com.jdbc.mysql.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
