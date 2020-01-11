@@ -44,7 +44,7 @@
 					</select>
 				</label><br/> 
 				<label>Special Features: <input type="text" name="specialFeatures" /></label><br/> 
-				<input type="submit" cvalue="Add Film" />
+				<input type="submit" value="Add Film" />
 			</fieldset>
 		</form>
 	</section>
