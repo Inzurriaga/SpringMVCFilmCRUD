@@ -14,8 +14,11 @@
 	</header>
 	<section>
 		<c:forEach var="film" items="${FilmList}">
-			<a href="">${film.title}</a>
-			<br>
+			<form action = "FindFilmByID.do" method = "POST" >
+				<input type="hidden" name="id" value = "${film.id}">
+				<input type = "submit" value = "${film.title }">
+			
+			</form>
 		</c:forEach>
 	
 	

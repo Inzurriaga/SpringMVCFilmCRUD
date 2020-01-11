@@ -75,6 +75,18 @@ public class FilmController {
 		return mv;
 	}
 	
+	//display film information
+	@RequestMapping(path = "DisplayFilmInfo.do", method = RequestMethod.POST)
+	public ModelAndView displayFilmInfo(Film film) {
+		Film returnFilm = dao.addFilm(film);
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("NewFilm", returnFilm);
+		mv.setViewName("WEB-INF/display.jsp");
+
+		return mv;
+	}
+	
 	
 	//create film
 	@RequestMapping(path = "NewFilm.do", method = RequestMethod.POST)
