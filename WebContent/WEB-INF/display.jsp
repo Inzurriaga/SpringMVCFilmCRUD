@@ -7,10 +7,53 @@
 <title>Films</title>
 </head>
 <body>
-	<p>
-	title: ${NewFilm.title}
-	</p>
-	
-
+	<header>
+		<h1>Film DB</h1>
+		<a href="/MVCFilmSite">Home</a>
+	</header>
+	<section>
+		<table>
+			<tr>
+				<td>Title</td>
+				<td>${film.title}</td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td>${film.description}</td>
+			</tr>
+			<tr>
+				<td>Release Year</td>
+				<td>${film.releaseYear}</td>
+			</tr>
+			<tr>
+				<td>Language</td>
+				<td>${film.filmLanguage}</td>
+			</tr>
+			<tr>
+				<td>Rental Duration</td>
+				<td>${film.rentalDuration}</td>
+			</tr>
+			<tr>
+				<td>Rental Rate</td>
+				<td>${film.rentalRate}</td>
+			</tr>
+			<tr>
+				<td>length</td>
+				<td>${film.length}</td>
+			</tr>
+			<tr>
+				<td>Replacement Cost</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Rating</td>
+				<td>${film.rating}</td>
+			</tr>
+			<tr>
+				<td>Special Features</td>
+				<td>${film.specialFeatures}</td>
+			</tr>
+		</table>
+	</section>
 </body>
 </html>

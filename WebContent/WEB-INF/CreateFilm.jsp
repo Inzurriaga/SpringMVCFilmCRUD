@@ -11,7 +11,7 @@
 		<h1>Film DB</h1>
 		<a href="/MVCFilmSite">Home</a>
 	</header>
-	<article>
+	<section>
 		<form action="NewFilm.do" method="Post">
 			<fieldset>
 				<legend>Create Film</legend>
@@ -44,9 +44,9 @@
 					</select>
 				</label><br/> 
 				<label>Special Features: <input type="text" name="specialFeatures" /></label><br/> 
-				<input type="submit" value="Add Film" />
+				<input type="submit" cvalue="Add Film" />
 			</fieldset>
 		</form>
-	</article>
+	</section>
 </body>
 </html>
