@@ -105,7 +105,7 @@ public class FilmController {
 	public ModelAndView deleteFilm(@RequestParam("id") int id) {
 		Film film = dao.findFilmById(id);
 		boolean isDeleted = dao.deleteFilm(film);
-		
+		System.out.println(id + "id of delete film");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("Delete",isDeleted);
 		mv.setViewName("WEB-INF/ConfirmUpdate.jsp");
