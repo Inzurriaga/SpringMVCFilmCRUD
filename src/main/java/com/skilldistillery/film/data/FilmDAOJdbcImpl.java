@@ -2,8 +2,10 @@
 package com.skilldistillery.film.data;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 public class FilmDAOJdbcImpl implements FilmDAO {
@@ -11,6 +13,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 	private final String url = "jdbc:mysql:/localhost:3306/sdvid?useSSL=false";
 	private final String user = "student";
 	private final String pass = "student";
+	private final String sql = "Select film.id, film.title,  film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, language.name from film join language on film.language_id = language.id";
 
 	static {
 		try {
@@ -20,14 +23,107 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		}
 	}
 
-	@Override
-	public List<Film> findAllFilms() {
-		return null;
+	private PreparedStatement preparedAndBindStatementById(Connection conn, int id, String sql) throws SQLException {
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, id);
+		return stmt;
+	}
+
+	private PreparedStatement preparedAndBindStatementByKeyword(Connection conn, String word, String sql)
+			throws SQLException {
+		PreparedStatement stmt = conn.prepareStatement(sql);
+
+		stmt.setString(1, "%" + word + "%");
+		stmt.setString(2, "%" + word + "%");
+		return stmt;
 	}
 
 	@Override
-	public Film getFilmById() {
-		return null;
+	public Film findFilmById(int filmId) {
+		Film film = null;
+		String sql = this.sql + " where film.id = ?";
+		try (Connection conn = DriverManager.getConnection(url, user, pass);
+				PreparedStatement stmt = preparedAndBindStatementById(conn, filmId, sql);
+				ResultSet rst = stmt.executeQuery();) {
+			if (rst.next()) {
+				film = new Film(rst.getInt("film.id"), rst.getString("film.title"), rst.getString("film.description"),
+						rst.getInt("film.release_year"), rst.getInt("film.language_id"),
+						rst.getInt("film.rental_duration"), rst.getDouble("film.rental_rate"),
+						rst.getInt("film.length"), rst.getDouble("film.replacement_cost"), rst.getString("film.rating"),
+						rst.getString("film.special_features"), rst.getString("language.name"),
+						findActorsByFilmId(filmId));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return film;
+	}
+
+	@Override
+	public List<Film> findFilmByKeyword(String filmKeyword) {
+		List<Film> films = new ArrayList<Film>();
+		Film film = null;
+		String sql = this.sql + " where film.title like ? or film.description like ?";
+		try (Connection conn = DriverManager.getConnection(url, user, pass);
+				PreparedStatement stmt = preparedAndBindStatementByKeyword(conn, filmKeyword, sql);
+				ResultSet rst = stmt.executeQuery();) {
+			while (rst.next()) {
+				film = new Film(rst.getInt("film.id"), rst.getString("film.title"), rst.getString("film.description"),
+						rst.getInt("film.release_year"), rst.getInt("film.language_id"),
+						rst.getInt("film.rental_duration"), rst.getDouble("film.rental_rate"),
+						rst.getInt("film.length"), rst.getDouble("film.replacement_cost"), rst.getString("film.rating"),
+						rst.getString("film.special_features"), rst.getString("language.name"),
+						findActorsByFilmId(rst.getInt("film.id")));
+				films.add(film);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return films;
+	}
+
+	@Override
+	public Actor findActorById(int actorId) {
+		Actor actor = null;
+		String sql = "Select actor.id, actor.first_name, actor.last_name from actor where actor.id = ?";
+		try (Connection conn = DriverManager.getConnection(url, user, pass);
+				PreparedStatement stmt = preparedAndBindStatementById(conn, actorId, sql);
+				ResultSet rst = stmt.executeQuery();) {
+			if (rst.next()) {
+				actor = new Actor(rst.getInt("actor.id"), rst.getString("actor.first_name"),
+						rst.getString("actor.last_name"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return actor;
+	}
+
+	@Override
+	public List<Actor> findActorsByFilmId(int filmId) {
+		List<Actor> actors = new ArrayList<Actor>();
+		Actor actor = null;
+		String sql = "Select actor.id, actor.first_name, actor.last_name from actor join film_actor on actor.id = film_actor.actor_id where film_actor.film_id = ?";
+		try (Connection conn = DriverManager.getConnection(url, user, pass);
+				PreparedStatement stmt = preparedAndBindStatementById(conn, filmId, sql);
+				ResultSet rst = stmt.executeQuery();) {
+			while (rst.next()) {
+				actor = new Actor(rst.getInt("actor.id"), rst.getString("actor.first_name"),
+						rst.getString("actor.last_name"));
+				actors.add(actor);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return actors;
 	}
 
 	@Override
@@ -42,7 +138,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
-			stmt.setInt(3, film.getReleasYear());
+			stmt.setInt(3, film.getReleaseYear());
 			stmt.setInt(4, film.getLanguageId());
 			stmt.setInt(5, film.getRentalDuration());
 			stmt.setDouble(6, film.getRentalRate());
@@ -138,7 +234,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
-			stmt.setInt(3, film.getReleasYear());
+			stmt.setInt(3, film.getReleaseYear());
 			stmt.setInt(4, film.getLanguageId());
 			stmt.setInt(5, film.getRentalDuration());
 			stmt.setDouble(6, film.getRentalRate());
@@ -147,7 +243,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			stmt.setString(9, film.getRating());
 			stmt.setString(10, film.getSpecialFeatures());
 			int updateCount = stmt.executeUpdate();
-			if(updateCount != 1) {
+			if (updateCount != 1) {
 				throw new SQLException();
 			}
 			conn.commit();

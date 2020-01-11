@@ -1,10 +1,12 @@
 package com.skilldistillery.film.entities;
 
+import java.util.List;
+
 public class Film {
 	private int id;
 	private String title;
 	private String description;
-	private int releasYear;
+	private int releaseYear;
 	private int languageId;
 	private int rentalDuration;
 	private double rentalRate;
@@ -12,13 +14,15 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	private List<Actor> actors;
+	private String filmLanguage;
 	
-	public Film(String title, String description, int releasYear, int languageId, int rentalDuration, double rentalRate,
+	public Film(String title, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate,
 			int length, double replacementCost, String rating, String specialFeatures) {
 		super();
 		this.title = title;
 		this.description = description;
-		this.releasYear = releasYear;
+		this.releaseYear = releaseYear;
 		this.languageId = languageId;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
@@ -26,6 +30,24 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
+	}
+	
+	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
+			String filmLanguage, List<Actor> actors) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageId = languageId;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+		this.actors = actors;
+		this.filmLanguage = filmLanguage;
 	}
 
 	public int getId() {
@@ -52,12 +74,12 @@ public class Film {
 		this.description = description;
 	}
 
-	public int getReleasYear() {
-		return releasYear;
+	public int getReleaseYear() {
+		return releaseYear;
 	}
 
-	public void setReleasYear(int releasYear) {
-		this.releasYear = releasYear;
+	public void setReleaseYear(int releasYear) {
+		this.releaseYear = releasYear;
 	}
 
 	public int getLanguageId() {
