@@ -64,13 +64,13 @@ public class FilmController {
 	}
 	
 	//find film by keyword
-	@RequestMapping(path = "FindFilmByKW.do", method = RequestMethod.POST)
+	@RequestMapping(path = "ListFilms.do", method = RequestMethod.POST)
 	public ModelAndView findFilmByKW(String filmKeyword) {
 		List<Film> filmList = dao.findFilmByKeyword(filmKeyword);
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("FilmList", filmList);
-		mv.setViewName("WEB-INF/display.jsp");
+		mv.setViewName("WEB-INF/ListFilms.jsp");
 
 		return mv;
 	}
