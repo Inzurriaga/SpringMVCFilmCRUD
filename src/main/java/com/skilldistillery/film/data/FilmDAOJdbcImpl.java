@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.skilldistillery.film.entities.Film;
 
-
 public class FilmDAOJdbcImpl implements FilmDAO {
 
 	private final String url = "jdbc:mysql:/localhost:3306/sdvid?useSSL=false";
@@ -38,23 +37,23 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(sql, sql, pass);
+			conn = DriverManager.getConnection(this.url, this.user, this.pass);
 			conn.setAutoCommit(false);
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
-			stmt.setString(1, film.getDescription());
-			stmt.setInt(1, film.getReleasYear());
-			stmt.setInt(1, film.getLanguageId());
-			stmt.setInt(1, film.getRentalDuration());
-			stmt.setDouble(1, film.getRentalRate());
-			stmt.setInt(1, film.getLength());
-			stmt.setDouble(1, film.getReplacementCost());
-			stmt.setString(1, film.getRating());
-			stmt.setString(1, film.getSpecialFeatures());
+			stmt.setString(2, film.getDescription());
+			stmt.setInt(3, film.getReleasYear());
+			stmt.setInt(4, film.getLanguageId());
+			stmt.setInt(5, film.getRentalDuration());
+			stmt.setDouble(6, film.getRentalRate());
+			stmt.setInt(7, film.getLength());
+			stmt.setDouble(8, film.getReplacementCost());
+			stmt.setString(9, film.getRating());
+			stmt.setString(10, film.getSpecialFeatures());
 			int updateCount = stmt.executeUpdate();
-			if(updateCount == 1) {
+			if (updateCount == 1) {
 				rs = stmt.getGeneratedKeys();
-				if(rs.next()) {
+				if (rs.next()) {
 					film.setId(rs.getInt(1));
 				} else {
 					throw new SQLException();
@@ -73,13 +72,13 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(conn != null) {
+				if (conn != null) {
 					conn.close();
 				}
-				if(stmt != null) {
+				if (stmt != null) {
 					stmt.close();
 				}
-				if(rs != null) {
+				if (rs != null) {
 					rs.close();
 				}
 			} catch (SQLException e2) {
@@ -87,5 +86,91 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			}
 		}
 		return film;
+	}
+
+	@Override
+	public boolean deleteFilm(Film film) {
+		String sql = "Delete FROM film where id = ?";
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = DriverManager.getConnection(this.url, this.user, this.pass);
+			conn.setAutoCommit(false);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			int updateCount = stmt.executeUpdate();
+			if (updateCount != 1) {
+				throw new SQLException();
+			}
+			conn.commit();
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean updateFilm(Film film) {
+		String sql = "UPDATE film SET title = ?, description = ?, release_year = ?, language_id = ?, rental_duration = ?, rental_rate = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? where id = ?";
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DriverManager.getConnection(this.url, this.user, this.pass);
+			conn.setAutoCommit(false);
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, film.getTitle());
+			stmt.setString(2, film.getDescription());
+			stmt.setInt(3, film.getReleasYear());
+			stmt.setInt(4, film.getLanguageId());
+			stmt.setInt(5, film.getRentalDuration());
+			stmt.setDouble(6, film.getRentalRate());
+			stmt.setInt(7, film.getLength());
+			stmt.setDouble(8, film.getReplacementCost());
+			stmt.setString(9, film.getRating());
+			stmt.setString(10, film.getSpecialFeatures());
+			int updateCount = stmt.executeUpdate();
+			if(updateCount != 1) {
+				throw new SQLException();
+			}
+			conn.commit();
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return true;
 	}
 }
