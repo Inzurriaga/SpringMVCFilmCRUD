@@ -58,8 +58,14 @@
 		</table>
 		<c:if test="${film.id > 1000}">
 			<article>
-				<a href="DeleteFilm.do/?id=${film.id}">Delete</a>
-				<a href="UpdateFilm.do/?id=${film.id}">Update</a>
+				<form action="DeleteFilm.do" action="POST">
+					<input type="hidden" name="id" value="${film.id}" />
+					<input type="submit" value="Delete Film" />
+				</form>
+				<form action="UpdateFilm.do" action="POST">
+					<input type="hidden" name="id" value="${film.id}" />
+					<input type="submit" value="Update Film" />
+				</form>
 			</article>
 		</c:if>
 	</section>
