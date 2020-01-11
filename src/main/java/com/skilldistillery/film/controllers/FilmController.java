@@ -31,17 +31,27 @@ public class FilmController {
 	}
 	//TODO: delete film
 	
-//	@RequestMapping(path = "GetFilmByID.do", params = "id", method = RequestMethod.GET)
-//	public ModelAndView getFilmByID(@RequestParam("id") int id) {
-//		ModelAndView mv = new ModelAndView();
-//		Film film = dao.getFilmById(id);
-//		mv.addObject("film", film);
-//		mv.setViewName("form.jsp");
-//		return mv;
-//		
-//	}
+	@RequestMapping(path = "FindFilmByID.do", params = "id", method = RequestMethod.GET)
+	public ModelAndView getFilmByID(@RequestParam("id") int id) {
+		ModelAndView mv = new ModelAndView();
+		Film film = dao.findFilmById(id);
+		mv.addObject("film", film);
+		mv.setViewName("form.jsp");
+		return mv;
+		
+	}
+	@RequestMapping(path = "NewFilm.do", method = RequestMethod.POST)
+	public ModelAndView newFilm(Film film) {
+		Film returnFilm = dao.addFilm(film);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("NewFilm",returnFilm);
+		mv.setViewName("WEB-INF/display.jsp");
+		
+		return mv;
+	}
 	
-//	public ModelAndView createFilm()
+	
 	
 	public FilmController(FilmDAO dao) {
 		this.dao = dao;

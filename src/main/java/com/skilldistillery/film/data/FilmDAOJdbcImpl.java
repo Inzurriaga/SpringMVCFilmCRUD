@@ -10,7 +10,7 @@ import com.skilldistillery.film.entities.Film;
 
 public class FilmDAOJdbcImpl implements FilmDAO {
 
-	private final String url = "jdbc:mysql:/localhost:3306/sdvid?useSSL=false";
+	private final String url = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 	private final String user = "student";
 	private final String pass = "student";
 	private final String sql = "Select film.id, film.title,  film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, language.name from film join language on film.language_id = language.id";
