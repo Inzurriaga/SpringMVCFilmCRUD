@@ -11,19 +11,21 @@
 </head>
 <body>
 	<c:if test="${empty Delete}">
-	<h3>Film Deleted</h3>
+		<h3>Film Deleted</h3>
 	</c:if>
 	<c:if test="${not empty Delete}">
-	<h3>Film not Deleted</h3>
+		<h3>Film not Deleted</h3>
 	</c:if>
-	
+
 	<c:if test="${empty Update}">
-	<h3>Film Updated</h3>
+		<h3>Film Updated</h3>
 	</c:if>
 	<c:if test="${not empty Update}">
-	<h3>Film not Updated</h3>
+		<h3>Film not Updated</h3>
 	</c:if>
-	
+
+
+	<a href="/MVCFilmSite">Home</a>
 
 
 
