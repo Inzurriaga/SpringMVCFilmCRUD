@@ -2,24 +2,30 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List of Films</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<header>
-		<h1>Film DB</h1>
-	</header>
-	<section>
-		<c:forEach var="film" items="${FilmList}">
-			<a href="">${film.title}</a>
-			<br>
-		</c:forEach>
+	<c:if test="${empty Delete}">
+	<h3>Film Deleted</h3>
+	</c:if>
+	<c:if test="${not empty Delete}">
+	<h3>Film not Deleted</h3>
+	</c:if>
 	
+	<c:if test="${empty Update}">
+	<h3>Film Updated</h3>
+	</c:if>
+	<c:if test="${not empty Update}">
+	<h3>Film not Updated</h3>
+	</c:if>
 	
-	</section>
+
+
 
 </body>
 </html>

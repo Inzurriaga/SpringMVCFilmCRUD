@@ -64,13 +64,13 @@ public class FilmController {
 	}
 	
 	//find film by keyword
-	@RequestMapping(path = "FindFilmByKW.do", method = RequestMethod.POST)
+	@RequestMapping(path = "ListFilms.do", method = RequestMethod.POST)
 	public ModelAndView findFilmByKW(String filmKeyword) {
 		List<Film> filmList = dao.findFilmByKeyword(filmKeyword);
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("FilmList", filmList);
-		mv.setViewName("WEB-INF/display.jsp");
+		mv.setViewName("WEB-INF/ListFilms.jsp");
 
 		return mv;
 	}
@@ -85,6 +85,28 @@ public class FilmController {
 		mv.addObject("NewFilm", returnFilm);
 		mv.setViewName("WEB-INF/display.jsp");
 
+		return mv;
+	}
+	
+	//delete film
+	@RequestMapping(path = "DeleteFilm.do", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(Film film) {
+		boolean isDeleted = dao.deleteFilm(film);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("Delete",isDeleted);
+		mv.setViewName("WEB-INF/UpdatedFilms.jsp");
+		return mv;
+	}
+	
+	//update film
+	@RequestMapping(path = "UpdateFilm.do", method = RequestMethod.POST)
+	public ModelAndView updateFilm(Film film) {
+		boolean isUpdated= dao.updateFilm(film);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("Update",isUpdated);
+		mv.setViewName("WEB-INF/UpdatedFilms.jsp");
 		return mv;
 	}
 	
