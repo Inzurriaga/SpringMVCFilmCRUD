@@ -38,6 +38,10 @@ public class FilmController {
 	public String findFilmByKW() {
 		return "WEB-INF/FilmByKW.jsp";
 	}
+	@RequestMapping("ListFilms.do")
+	public String listFilms() {
+		return "WEB-INF/ListFilms.jsp";
+	}
 
 //	@RequestMapping("deleteFilm.do")
 //	public String deleteFilm() {

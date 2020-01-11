@@ -9,7 +9,7 @@
 <body>
 	<div>
 		<h4>Find Film By Keyword</h4>
-		<form action ="FindFilmByKW.do" method = "POST">
+		<form action ="ListFilms.do" method = "POST">
 		<label>Keyword: <input type = "text" name ="filmKeyword" size = "30" required></label>
 		<input type = "submit" value="Find Film">
 		</form>
