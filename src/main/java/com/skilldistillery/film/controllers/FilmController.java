@@ -24,36 +24,36 @@ public class FilmController {
 		return "WEB-INF/home.jsp";
 	}
 
-	@RequestMapping("FindFilmByID.do")
+	@RequestMapping("FindFilmByIDPage.do")
 	public String findFilmByID() {
 		return "WEB-INF/FindFilmByID.jsp";
 	}
 
-	@RequestMapping("createFilm.do")
+	@RequestMapping("createFilmPage.do")
 	public String createFilm() {
 		return "WEB-INF/CreateFilm.jsp";
 	}
 
-	@RequestMapping("FindFilmByKW.do")
+	@RequestMapping("FindFilmByKWPage.do")
 	public String findFilmByKW() {
 		return "WEB-INF/FilmByKW.jsp";
 	}
 
-	@RequestMapping("deleteFilm.do")
-	public String deleteFilm() {
-		return "WEB-INF/DeleteFilm.jsp";
-	}
+//	@RequestMapping("deleteFilm.do")
+//	public String deleteFilm() {
+//		return "WEB-INF/DeleteFilm.jsp";
+//	}
 
 	// dynamic mapping
 	
 	//find film by id
-	@RequestMapping(path = "FindFilmByID.do", params = "id", method = RequestMethod.GET)
+	@RequestMapping(path = "FindFilmByID.do", params = "id", method = RequestMethod.POST)
 	public ModelAndView getFilmByID(@RequestParam("id") int id) {
 		Film film = dao.findFilmById(id);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("film", film);
-		mv.setViewName("form.jsp");
+		mv.setViewName("WEB-INF/display.jsp");
 		
 		return mv;
 
