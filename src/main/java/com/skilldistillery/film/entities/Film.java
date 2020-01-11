@@ -17,6 +17,9 @@ public class Film {
 	private List<Actor> actors;
 	private String filmLanguage;
 	
+	public Film() {
+	}
+	
 	public Film(String title, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate,
 			int length, double replacementCost, String rating, String specialFeatures) {
 		super();
@@ -137,6 +140,21 @@ public class Film {
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
 	}
-	
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
+	public String getFilmLanguage() {
+		return filmLanguage;
+	}
+
+	public void setFilmLanguage(String filmLanguage) {
+		this.filmLanguage = filmLanguage;
+	}
 	
 }
