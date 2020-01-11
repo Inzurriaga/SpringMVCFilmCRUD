@@ -88,6 +88,28 @@ public class FilmController {
 		return mv;
 	}
 	
+	//delete film
+	@RequestMapping(path = "DeleteFilm.do", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(Film film) {
+		boolean isDeleted = dao.deleteFilm(film);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("Delete",isDeleted);
+		mv.setViewName("WEB-INF/UpdatedFilms.jsp");
+		return mv;
+	}
+	
+	//update film
+	@RequestMapping(path = "UpdateFilm.do", method = RequestMethod.POST)
+	public ModelAndView updateFilm(Film film) {
+		boolean isUpdated= dao.updateFilm(film);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("Update",isUpdated);
+		mv.setViewName("WEB-INF/UpdatedFilms.jsp");
+		return mv;
+	}
+	
 	
 	
 
