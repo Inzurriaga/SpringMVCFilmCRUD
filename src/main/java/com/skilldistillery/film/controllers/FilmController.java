@@ -29,6 +29,10 @@ public class FilmController {
 	public String createFilm() {
 		return "WEB-INF/CreateFilm.jsp";
 	}
+	@RequestMapping("FindFilmByKW.do")
+	public String findFilmByKW() {
+		return "WEB-INF/FilmByKW.jsp";
+	}
 	//TODO: delete film
 	
 	@RequestMapping(path = "FindFilmByID.do", params = "id", method = RequestMethod.GET)
