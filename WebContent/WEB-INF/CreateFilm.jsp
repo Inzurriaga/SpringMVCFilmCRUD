@@ -20,7 +20,7 @@
 				<label>Description: <input type="text" name="description" /></label><br/> 
 				<label>Release Year: <input type="number" name="releaseYear" />
 				</label> <br>
-				<label><span>*</span> Language ID: 
+				<label><span>*</span> Language:
 					<select name="languageId">
 						<option value="1">English</option>
 						<option value="2">Italian</option>
@@ -43,7 +43,6 @@
 						<option value="NC17">NC17</option>
 					</select>
 				</label><br/> 
-				<label>Special Features: <input type="text" name="specialFeatures" /></label><br/> 
 				<input type="submit" value="Add Film" />
 			</fieldset>
 		</form>

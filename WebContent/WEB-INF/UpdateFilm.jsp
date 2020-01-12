@@ -16,14 +16,15 @@
 		<a href="/MVCFilmSite">Home</a>
 	</header>
 	<section>
-		<form action="ConfirmUpdate.do" method="Post">
+		<form action="UpdateFilmInDB.do" method="Post">
 			<fieldset>
 				<legend>Create Film</legend>
 				<br> <label><span>*</span> Title: <input type="text"
-					name="title" required /></label><br /> <label>Description: <input
-					type="text" name="description" /></label><br /> <label>Release
-					Year: <input type="number" name="releaseYear" />
-				</label> <br> <label><span>*</span> Language ID: <select
+					name="title" value="${Film.title}" required /></label><br /> 
+					<label>Description: <input
+					type="text" name="description" value="${Film.description}"/></label><br /> <label>Release
+					Year: <input type="number" name="releaseYear" value="${Film.releaseYear}"/>
+				</label> <br> <label><span>*</span> Language: <select
 					name="languageId">
 						<option value="1">English</option>
 						<option value="2">Italian</option>
@@ -32,11 +33,11 @@
 						<option value="5">French</option>
 						<option value="6">German</option>
 				</select> </label><br /> <label><span>*</span> Rental Duration: <input
-					type="number" name="rentalDuration" required /></label><br /> <label><span>*</span>
-					Rental Rate: <input type="number" name="rentalRate" required /></label><br />
+					type="number" name="rentalDuration" value="${Film.rentalDuration}" required /></label><br /> <label><span>*</span>
+					Rental Rate: <input type="number" name="rentalRate" value="${Film.rentalRate}" required /></label><br />
 				<label>Length of Film: <input type="text" name="number"
 					value="120" /></label><br /> <label><span>*</span> Replacement
-					Cost: <input type="number" name="replacementCost" required /></label><br />
+					Cost: <input type="number" name="replacementCost" value="${Film.replacementCost}" required /></label><br />
 				<label>Rating: <select name="rating">
 						<option value="G">G</option>
 						<option value="PG">PG</option>
@@ -44,9 +45,9 @@
 						<option value="R">R</option>
 						<option value="NC17">NC17</option>
 				</select>
-				</label><br /> <label>Special Features: <input type="text"
-					name="specialFeatures" /></label><br />
-					 <input type="submit"
+				</label>
+					<input type="hidden" name="id" value="${Film.id}" />
+					<input type="submit"
 					value="Update Film" />
 			</fieldset>
 		</form>

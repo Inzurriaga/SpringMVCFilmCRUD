@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td>Rental Rate</td>
-				<td>${film.rentalRate}</td>
+				<td><fmt:formatNumber type="currency">${film.rentalRate}</fmt:formatNumber></td>
 			</tr>
 			<tr>
 				<td>length</td>
@@ -45,15 +45,11 @@
 			</tr>
 			<tr>
 				<td>Replacement Cost</td>
-				<td></td>
+				<td><fmt:formatNumber type="currency">${film.replacementCost}</fmt:formatNumber></td>
 			</tr>
 			<tr>
 				<td>Rating</td>
 				<td>${film.rating}</td>
-			</tr>
-			<tr>
-				<td>Special Features</td>
-				<td>${film.specialFeatures}</td>
 			</tr>
 		</table>
 		<c:if test="${film.id > 1000}">

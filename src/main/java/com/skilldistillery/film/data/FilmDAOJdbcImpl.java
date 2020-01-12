@@ -13,7 +13,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 	private final String url = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 	private final String user = "student";
 	private final String pass = "student";
-	private final String sql = "Select film.id, film.title,  film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, language.name from film join language on film.language_id = language.id";
+	private final String sql = "Select film.id, film.title,  film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, language.name from film join language on film.language_id = language.id";
 
 	static {
 		try {
@@ -50,7 +50,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 						rst.getInt("film.release_year"), rst.getInt("film.language_id"),
 						rst.getInt("film.rental_duration"), rst.getDouble("film.rental_rate"),
 						rst.getInt("film.length"), rst.getDouble("film.replacement_cost"), rst.getString("film.rating"),
-						rst.getString("film.special_features"), rst.getString("language.name"),
+						rst.getString("language.name"),
 						findActorsByFilmId(filmId));
 			}
 
@@ -74,7 +74,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 						rst.getInt("film.release_year"), rst.getInt("film.language_id"),
 						rst.getInt("film.rental_duration"), rst.getDouble("film.rental_rate"),
 						rst.getInt("film.length"), rst.getDouble("film.replacement_cost"), rst.getString("film.rating"),
-						rst.getString("film.special_features"), rst.getString("language.name"),
+						rst.getString("language.name"),
 						findActorsByFilmId(rst.getInt("film.id")));
 				films.add(film);
 			}
@@ -128,7 +128,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	@Override
 	public Film addFilm(Film film) {
-		String sql = "INSERT INTO film(title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO film(title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating) VALUES (s ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -145,7 +145,6 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			stmt.setInt(7, film.getLength());
 			stmt.setDouble(8, film.getReplacementCost());
 			stmt.setString(9, film.getRating());
-			stmt.setString(10, film.getSpecialFeatures());
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 1) {
 				rs = stmt.getGeneratedKeys();
@@ -224,10 +223,9 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	@Override
 	public boolean updateFilm(Film film) {
-		String sql = "UPDATE film SET title = ?, description = ?, release_year = ?, language_id = ?, rental_duration = ?, rental_rate = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? where id = ?";
+		String sql = "UPDATE film SET title = ?, description = ?, release_year = ?, language_id = ?, rental_duration = ?, rental_rate = ?, length = ?, replacement_cost = ?, rating = ? where id = ?";
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		try {
 			conn = DriverManager.getConnection(this.url, this.user, this.pass);
 			conn.setAutoCommit(false);
@@ -241,8 +239,10 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			stmt.setInt(7, film.getLength());
 			stmt.setDouble(8, film.getReplacementCost());
 			stmt.setString(9, film.getRating());
-			stmt.setString(10, film.getSpecialFeatures());
+			stmt.setInt(10, film.getId());
+			System.out.println(film.getId());
 			int updateCount = stmt.executeUpdate();
+			System.out.println(updateCount);
 			if (updateCount != 1) {
 				throw new SQLException();
 			}

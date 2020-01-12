@@ -54,11 +54,9 @@ public class FilmController {
 	@RequestMapping(path = "FindFilmByID.do", params = "id", method = RequestMethod.POST)
 	public ModelAndView getFilmByID(@RequestParam("id") int id) {
 		Film film = dao.findFilmById(id);
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("film", film);
 		mv.setViewName("WEB-INF/display.jsp");
-		
 		return mv;
 
 	}
@@ -67,11 +65,9 @@ public class FilmController {
 	@RequestMapping(path = "ListFilms.do", method = RequestMethod.POST)
 	public ModelAndView findFilmByKW(String filmKeyword) {
 		List<Film> filmList = dao.findFilmByKeyword(filmKeyword);
-
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("FilmList", filmList);
 		mv.setViewName("WEB-INF/ListFilms.jsp");
-
 		return mv;
 	}
 	
@@ -79,11 +75,9 @@ public class FilmController {
 	@RequestMapping(path = "DisplayFilmInfo.do", method = RequestMethod.POST)
 	public ModelAndView displayFilmInfo(Film film) {
 		Film returnFilm = dao.addFilm(film);
-
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("NewFilm", returnFilm);
 		mv.setViewName("WEB-INF/display.jsp");
-
 		return mv;
 	}
 	
@@ -92,11 +86,9 @@ public class FilmController {
 	@RequestMapping(path = "NewFilm.do", method = RequestMethod.POST)
 	public ModelAndView newFilm(Film film) {
 		Film returnFilm = dao.addFilm(film);
-
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("NewFilm", returnFilm);
 		mv.setViewName("WEB-INF/display.jsp");
-
 		return mv;
 	}
 	
@@ -116,12 +108,22 @@ public class FilmController {
 	@RequestMapping(path = "UpdateFilm.do")
 	public ModelAndView updateFilm(@RequestParam("id") int id) {
 		Film film = dao.findFilmById(id);
-		
-		
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("Film", film);
 		mv.setViewName("WEB-INF/UpdateFilm.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "UpdateFilmInDB.do", method = RequestMethod.POST)
+	public ModelAndView UpdateFilmInDB(Film film) {
+		System.out.println("1 hello world: " + film.getId());
+		boolean updated = dao.updateFilm(film);
+		System.out.println("2 hello world: " + film.getId());
+		Film updatedfilm = dao.findFilmById(film.getId());
+		System.out.println("3 hello world: " + film.getId());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("NewFilm", updatedfilm);
+		mv.setViewName("WEB-INF/display.jsp");
 		return mv;
 	}
 	
