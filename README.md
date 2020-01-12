@@ -52,9 +52,17 @@ Gradle
 
 Spring
 
+CSS
+
+HTML
+
+Bootstrap
+
 Unix Terminal
 
 git
+
+
 
 
 ### Demo
