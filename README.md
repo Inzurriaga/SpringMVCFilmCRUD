@@ -59,6 +59,6 @@ git
 
 ### Demo
 
-[!Display Film Page](<https://user-images.githubusercontent.com/55298338/72224272-dae1ee80-3535-11ea-88ba-e04f6842262f.png>)
+![Display Film Page](<https://user-images.githubusercontent.com/55298338/72224272-dae1ee80-3535-11ea-88ba-e04f6842262f.png>)
 
-[!Create Film Page](<https://user-images.githubusercontent.com/55298338/72224298-27c5c500-3536-11ea-82dc-1c1db9f05ea9.png>)
+![Create Film Page](<https://user-images.githubusercontent.com/55298338/72224298-27c5c500-3536-11ea-82dc-1c1db9f05ea9.png>)
