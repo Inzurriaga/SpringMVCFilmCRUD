@@ -22,15 +22,15 @@
 				<legend>Update Film</legend>
 				<div class="form-group">
 					<label><span>*</span> Title: </label>
-					<input type="text" name="title" value="${Film.title}" required />
+					<input type="text" name="title" value="${Film.title}" class="form-control" required />
 				</div>
 				<div class="form-group">
 					<label>Description </label>
-					<input type="text" name="description" value="${Film.description}"/>
+					<input type="text" name="description" value="${Film.description}" class="form-control"/>
 				</div>
 				<div class="form-group">
-					 <label>Release Year: </label>
-					 <input type="number" name="releaseYear" value="${Film.releaseYear}"/>
+					 <label><span>*</span>Release Year: </label>
+					 <input type="number" name="releaseYear" value="${Film.releaseYear}" min="1901" max="2155" class="form-control"/>
 				</div>
 				<div class="form-group">
 				 	<label for="language"><span>*</span> Language </label>
@@ -66,19 +66,19 @@
 				</div>
 				<div class="form-group">
 					<label><span>*</span> Rental Duration: </label>
-					<input type="number" name="rentalDuration" value="${Film.rentalDuration}" required />
+					<input type="number" name="rentalDuration" value="${Film.rentalDuration}" class="form-control" required />
 				</div>
 				<div class="form-group">
 					<label><span>*</span>Rental Rate:</label>
-					<input type="number" name="rentalRate" value="${Film.rentalRate}" required />
+					<input type="number" name="rentalRate" value="${Film.rentalRate}" class="form-control" required />
 				</div>
 				<div class="form-group">
 					<label>Length of Film:</label>
-					<input type="number" name="length" value="${Film.length}"/>
+					<input type="number" name="length" class="form-control"value="${Film.length}"/>
 				</div>
 				<div class="form-group">
 					<label><span>*</span> Replacement Cost: </label>
-					<input type="number" name="replacementCost" value="${Film.replacementCost}" required />
+					<input type="number" name="replacementCost" class="form-control" value="${Film.replacementCost}" required />
 				</div>
 				<div class="form-group">
 					<label for="rating">Rating: </label>

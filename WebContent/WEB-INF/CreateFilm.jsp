@@ -28,8 +28,8 @@
 					<input type="text" name="description" id="description" class="form-control" />
 				</div>
 				<div class="form-group">
-					<label for="releaseYear">Release Year</label>
-					<input type="number" name="releaseYear" id="releaseYear" class="form-control" />
+					 <label for="releaseYear"><span>*</span>Release Year: </label>
+					 <input type="number" name="releaseYear" id="releaseYear" min="1901" max="2155" class="form-control"/>
 				</div>
 				<div class="form-group">
 					<label for="language"><span>*</span>Language</label>

@@ -21,7 +21,7 @@
 					<legend>Find Film By ID</legend>
 					<div class="form-group">
 						<label for="id">Insert ID: </label>
-						<input type="text" name="id" size="6" id="id" maxlength="5" class="form-control" required>
+						<input type="number" name="id" size="6" id="id" maxlength="5" class="form-control" required>
 					</div>
 					<input type="submit" value="Find Film" class="btn btn-primary">
 				</fieldset>

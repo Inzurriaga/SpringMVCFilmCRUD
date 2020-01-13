@@ -79,7 +79,11 @@ public class FilmController {
 		List<Film> filmList = dao.findFilmByKeyword(filmKeyword);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("FilmList", filmList);
-		mv.setViewName("WEB-INF/ListFilms.jsp");
+		if(filmList.size() == 0) {
+			mv.setViewName("WEB-INF/filmNotFound.jsp");
+		} else {
+			mv.setViewName("WEB-INF/ListFilms.jsp");
+		}
 		return mv;
 	}
 	
@@ -117,12 +121,12 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path = "UpdateFilmInDB.do", method = RequestMethod.POST)
-	public ModelAndView UpdateFilmInDB(Film film) {
+	public ModelAndView UpdateFilmInDB(Film film, RedirectAttributes redir) {
 		boolean updated = dao.updateFilm(film);
 		Film updatedfilm = dao.findFilmById(film.getId());
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("NewFilm", updatedfilm);
-		mv.setViewName("WEB-INF/display.jsp");
+		redir.addFlashAttribute("film", film);
+		mv.setViewName("redirect:DisplayFilmInfo.do");
 		return mv;
 	}
 	

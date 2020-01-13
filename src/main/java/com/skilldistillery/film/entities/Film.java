@@ -166,4 +166,15 @@ public class Film {
 		this.categoryId = categoryId;
 	}
 
+	@Override
+	public String toString() {
+		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
+				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
+				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating + ", actors="
+				+ actors + ", filmLanguage=" + filmLanguage + ", categoryId=" + categoryId + ", category=" + category
+				+ "]";
+	}
+	
+	
+
 }
