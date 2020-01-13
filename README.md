@@ -2,11 +2,12 @@
 
 Week 8 Homework for SkillDistillery
 
+By: Gabriel Inzurriaga and Neal Savant
 ### Overview
 
-Building upon the week 7 project, my partner and I have developed a Spring application
+Building upon the week 7 project, we have developed a Spring application
 that updates the database from a website. A user can find film by ID and keyword. The user can also create a film.
-Deletions and Updates to the list of films are only possible on user created films. This preserves the integrity of the database.
+Deletions and Updates to the list of films are only possible on user created films. This preserves the integrity of the database.  
 
 
 ### Concepts
