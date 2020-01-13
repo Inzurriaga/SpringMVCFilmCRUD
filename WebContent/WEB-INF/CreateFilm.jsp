@@ -12,7 +12,7 @@
 </head>
 <body>
 	<header>
-		<h1>Film DB</h1>
+		<h1>Film Database Controller</h1>
 		<a href="/MVCFilmSite" class="btn btn-outline-primary">Home</a>
 	</header>
 	<section class="container">
