@@ -15,12 +15,14 @@ public class Film {
 	private String rating;
 	private List<Actor> actors;
 	private String filmLanguage;
-	
+	private int categoryId;
+	private String category;
+
 	public Film() {
 	}
-	
-	public Film(String title, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate,
-			int length, double replacementCost, String rating) {
+
+	public Film(String title, String description, int releaseYear, int languageId, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating) {
 		super();
 		this.title = title;
 		this.description = description;
@@ -32,10 +34,10 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 	}
-	
+
 	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating,
-			String filmLanguage, List<Actor> actors) {
+			double rentalRate, int length, double replacementCost, String rating, String filmLanguage,
+			List<Actor> actors, String category, int categoryId) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -48,6 +50,8 @@ public class Film {
 		this.rating = rating;
 		this.actors = actors;
 		this.filmLanguage = filmLanguage;
+		this.category = category;
+		this.categoryId = categoryId;
 	}
 
 	public int getId() {
@@ -145,5 +149,21 @@ public class Film {
 	public void setFilmLanguage(String filmLanguage) {
 		this.filmLanguage = filmLanguage;
 	}
-	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 }

@@ -45,6 +45,12 @@
 				<td>Language</td>
 				<td>${film.filmLanguage}</td>
 			</tr>
+			<c:if test="${!empty film.category}">
+				<tr>
+					<td>Category</td>
+					<td>${film.category}</td>
+				</tr>
+			</c:if>
 			<tr>
 				<td>Rental Duration</td>
 				<td>${film.rentalDuration}</td>
@@ -74,6 +80,7 @@
 				</form>
 				<form action="UpdateFilm.do" action="POST">
 					<input type="hidden" name="id" value="${film.id}" />
+					<input type="hidden" name="categoryId" value="${film.categoryId}" />
 					<input type="submit" value="Update Film" class="btn btn-primary"/>
 				</form>
 			</article>

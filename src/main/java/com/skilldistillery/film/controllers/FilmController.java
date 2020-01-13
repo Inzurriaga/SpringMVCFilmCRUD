@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.entities.Film;
@@ -49,14 +50,25 @@ public class FilmController {
 //	}
 
 	// dynamic mapping
+	//direct here for display
+	@RequestMapping("DisplayFilmInfo.do")
+	public ModelAndView displayFilmInfo(Film film) {
+		ModelAndView mv = new ModelAndView();
+		if(film == null || film.getId() == 0) {
+			mv.setViewName("WEB-INF/filmNotFound.jsp");
+		} else {
+			mv.setViewName("WEB-INF/display.jsp");
+		}
+		return mv;
+	}
 	
 	//find film by id
 	@RequestMapping(path = "FindFilmByID.do", params = "id", method = RequestMethod.POST)
-	public ModelAndView getFilmByID(@RequestParam("id") int id) {
+	public ModelAndView getFilmByID(@RequestParam("id") int id, RedirectAttributes redir) {
 		Film film = dao.findFilmById(id);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("film", film);
-		mv.setViewName("WEB-INF/display.jsp");
+		redir.addFlashAttribute("film", film);
+		mv.setViewName("redirect:DisplayFilmInfo.do");
 		return mv;
 
 	}
@@ -71,24 +83,16 @@ public class FilmController {
 		return mv;
 	}
 	
-	//display film information
-	@RequestMapping(path = "DisplayFilmInfo.do", method = RequestMethod.POST)
-	public ModelAndView displayFilmInfo(Film film) {
-		Film returnFilm = dao.addFilm(film);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("NewFilm", returnFilm);
-		mv.setViewName("WEB-INF/display.jsp");
-		return mv;
-	}
-	
 	
 	//create film
-	@RequestMapping(path = "NewFilm.do", method = RequestMethod.POST)
-	public ModelAndView newFilm(Film film) {
+	@RequestMapping(path = "addFilmToDB.do", method = RequestMethod.POST)
+	public ModelAndView newFilm(Film film, RedirectAttributes redir) {
 		Film returnFilm = dao.addFilm(film);
+		System.out.println(returnFilm.getId());
+		Film foundFilm = dao.findFilmById(returnFilm.getId());
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("NewFilm", returnFilm);
-		mv.setViewName("WEB-INF/display.jsp");
+		redir.addFlashAttribute("film", foundFilm);
+		mv.setViewName("redirect:DisplayFilmInfo.do");
 		return mv;
 	}
 	
@@ -97,7 +101,6 @@ public class FilmController {
 	public ModelAndView deleteFilm(@RequestParam("id") int id) {
 		Film film = dao.findFilmById(id);
 		boolean isDeleted = dao.deleteFilm(film);
-		System.out.println(id + "id of delete film");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("Delete",isDeleted);
 		mv.setViewName("WEB-INF/ConfirmUpdate.jsp");
@@ -116,11 +119,8 @@ public class FilmController {
 	
 	@RequestMapping(path = "UpdateFilmInDB.do", method = RequestMethod.POST)
 	public ModelAndView UpdateFilmInDB(Film film) {
-		System.out.println("1 hello world: " + film.getId());
 		boolean updated = dao.updateFilm(film);
-		System.out.println("2 hello world: " + film.getId());
 		Film updatedfilm = dao.findFilmById(film.getId());
-		System.out.println("3 hello world: " + film.getId());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("NewFilm", updatedfilm);
 		mv.setViewName("WEB-INF/display.jsp");

@@ -47,6 +47,7 @@
 				</select>
 				</label>
 					<input type="hidden" name="id" value="${Film.id}" />
+					<input type="hidden" name="categoryId" value="${Film.categoryId}" />
 					<input type="submit"
 					value="Update Film" />
 			</fieldset>

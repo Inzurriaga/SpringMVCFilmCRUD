@@ -16,7 +16,7 @@
 		<a href="/MVCFilmSite" class="btn btn-outline-primary">Home</a>
 	</header>
 	<section class="container">
-		<form action="NewFilm.do" method="Post">
+		<form action="addFilmToDB.do" method="Post">
 			<fieldset>
 				<legend>Create Film</legend>
 				<div class="form-group">
@@ -40,6 +40,27 @@
 						<option value="4">Mandarin</option>
 						<option value="5">French</option>
 						<option value="6">German</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<label for="category"><span>*</span>Language</label>
+					<select id="category" name="categoryId" class="btn btn-secondary dropdown-toggle">
+						<option value="1">Action</option>
+						<option value="2">Animation</option>
+						<option value="3">Children</option>
+						<option value="4">Classics</option>
+						<option value="5">Comedy</option>
+						<option value="6">Documentary</option>
+						<option value="7">Drama</option>
+						<option value="8">Family</option>
+						<option value="9">Foreign</option>
+						<option value="10">Games</option>
+						<option value="11">Horror</option>
+						<option value="12">Music</option>
+						<option value="13">New</option>
+						<option value="14">Sci-Fi</option>
+						<option value="15">Sports</option>
+						<option value="16">Travel</option>
 					</select> 
 				</div>
 				<div class="form-group">
