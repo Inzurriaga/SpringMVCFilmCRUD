@@ -125,8 +125,12 @@ public class FilmController {
 		boolean updated = dao.updateFilm(film);
 		Film updatedfilm = dao.findFilmById(film.getId());
 		ModelAndView mv = new ModelAndView();
-		redir.addFlashAttribute("film", film);
-		mv.setViewName("redirect:DisplayFilmInfo.do");
+		redir.addFlashAttribute("film", updatedfilm);
+		if(updated) {
+			mv.setViewName("redirect:DisplayFilmInfo.do");	
+		} else {
+			mv.setViewName("WEB-INF/updateComplete.jsp");
+		}
 		return mv;
 	}
 	

@@ -24,12 +24,7 @@
 		<a href="/MVCFilmSite">Home</a>
 	</header>
 	<section class="container">
-		<c:if test="${empty Delete}">
-			<p>Film Not Deleted</p>
-		</c:if>
-		<c:if test="${not empty Delete}">
-			<p>Film Deleted</p>
-		</c:if>
+			<p>update film</p>
 			<p>Redirecting back to home in</p>
 			<p class="numberCountDown"></p>
 	</section>
