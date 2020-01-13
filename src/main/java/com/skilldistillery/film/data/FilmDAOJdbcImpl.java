@@ -274,8 +274,6 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			}
 			stmt.close();
 			stmt = conn.prepareStatement(sqlFilmCategoryInsert);
-			System.out.println("in the update" + film.getId());
-			System.out.println("in the update" + film.getCategoryId());
 			stmt.setInt(1, film.getId());
 			stmt.setInt(2, film.getCategoryId());
 			updateCount = stmt.executeUpdate();

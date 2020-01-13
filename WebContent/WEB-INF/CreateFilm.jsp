@@ -73,7 +73,7 @@
 				</div>
 				<div class="form-group">
 					<label for="filmLength">Length of Film</label>
-					<input type="text" name="number" id="filmLength" class="form-control" /> 
+					<input type="number" name="length" id="filmLength" class="form-control" /> 
 				</div>
 				<div class="form-group">
 					<label for="replacementCost"><span>*</span> Replacement Cost</label>

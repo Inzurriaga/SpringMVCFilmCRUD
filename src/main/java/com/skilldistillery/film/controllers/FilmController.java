@@ -88,7 +88,6 @@ public class FilmController {
 	@RequestMapping(path = "addFilmToDB.do", method = RequestMethod.POST)
 	public ModelAndView newFilm(Film film, RedirectAttributes redir) {
 		Film returnFilm = dao.addFilm(film);
-		System.out.println(returnFilm.getId());
 		Film foundFilm = dao.findFilmById(returnFilm.getId());
 		ModelAndView mv = new ModelAndView();
 		redir.addFlashAttribute("film", foundFilm);

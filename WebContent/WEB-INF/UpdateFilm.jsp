@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Update Film</title>
-<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>Update Film</title>
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="./css/createFilmStyle.css" />
 	<link rel="stylesheet" href="./css/mainStyle.css" />
@@ -17,43 +14,85 @@
 
 	<header>
 		<h1>Film Database Controller</h1>
-		<a href="/MVCFilmSite">Home</a>
+		<a href="/MVCFilmSite" class="btn btn-outline-primary">Home</a>
 	</header>
-	<section>
+	<section class="container">
 		<form action="UpdateFilmInDB.do" method="Post">
 			<fieldset>
 				<legend>Update Film</legend>
-				<br> <label><span>*</span> Title: <input type="text"
-					name="title" value="${Film.title}" required /></label><br /> 
-					<label>Description: <input
-					type="text" name="description" value="${Film.description}"/></label><br /> <label>Release
-					Year: <input type="number" name="releaseYear" value="${Film.releaseYear}"/>
-				</label> <br> <label><span>*</span> Language: <select
-					name="languageId">
+				<div class="form-group">
+					<label><span>*</span> Title: </label>
+					<input type="text" name="title" value="${Film.title}" required />
+				</div>
+				<div class="form-group">
+					<label>Description </label>
+					<input type="text" name="description" value="${Film.description}"/>
+				</div>
+				<div class="form-group">
+					 <label>Release Year: </label>
+					 <input type="number" name="releaseYear" value="${Film.releaseYear}"/>
+				</div>
+				<div class="form-group">
+				 	<label for="language"><span>*</span> Language </label>
+				  	<select name="languageId" id="language" class="btn btn-secondary dropdown-toggle">
 						<option value="1">English</option>
 						<option value="2">Italian</option>
 						<option value="3">Japanese</option>
 						<option value="4">Mandarin</option>
 						<option value="5">French</option>
 						<option value="6">German</option>
-				</select> </label><br /> <label><span>*</span> Rental Duration: <input
-					type="number" name="rentalDuration" value="${Film.rentalDuration}" required /></label><br /> <label><span>*</span>
-					Rental Rate: <input type="number" name="rentalRate" value="${Film.rentalRate}" required /></label><br />
-				<label>Length of Film: <input type="text" name="number"
-					value="120" /></label><br /> <label><span>*</span> Replacement
-					Cost: <input type="number" name="replacementCost" value="${Film.replacementCost}" required /></label><br />
-				<label>Rating: <select name="rating">
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="category"><span>*</span>Language</label>
+					<select id="category" name="categoryId" class="btn btn-secondary dropdown-toggle">
+						<option value="1">Action</option>
+						<option value="2">Animation</option>
+						<option value="3">Children</option>
+						<option value="4">Classics</option>
+						<option value="5">Comedy</option>
+						<option value="6">Documentary</option>
+						<option value="7">Drama</option>
+						<option value="8">Family</option>
+						<option value="9">Foreign</option>
+						<option value="10">Games</option>
+						<option value="11">Horror</option>
+						<option value="12">Music</option>
+						<option value="13">New</option>
+						<option value="14">Sci-Fi</option>
+						<option value="15">Sports</option>
+						<option value="16">Travel</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<label><span>*</span> Rental Duration: </label>
+					<input type="number" name="rentalDuration" value="${Film.rentalDuration}" required />
+				</div>
+				<div class="form-group">
+					<label><span>*</span>Rental Rate:</label>
+					<input type="number" name="rentalRate" value="${Film.rentalRate}" required />
+				</div>
+				<div class="form-group">
+					<label>Length of Film:</label>
+					<input type="number" name="length" value="${Film.length}"/>
+				</div>
+				<div class="form-group">
+					<label><span>*</span> Replacement Cost: </label>
+					<input type="number" name="replacementCost" value="${Film.replacementCost}" required />
+				</div>
+				<div class="form-group">
+					<label for="rating">Rating: </label>
+					<select name="rating" id="rating" class="btn btn-secondary dropdown-toggle">
 						<option value="G">G</option>
 						<option value="PG">PG</option>
 						<option value="PG13">PG13</option>
 						<option value="R">R</option>
 						<option value="NC17">NC17</option>
-				</select>
-				</label>
-					<input type="hidden" name="id" value="${Film.id}" />
-					<input type="hidden" name="categoryId" value="${Film.categoryId}" />
-					<input type="submit"
-					value="Update Film" />
+					</select>
+				</div>
+				<input type="hidden" name="id" value="${Film.id}" />
+				<input type="hidden" name="categoryId" value="${Film.categoryId}" />
+				<input type="submit" value="Update Film" class="btn btn-primary"/>
 			</fieldset>
 		</form>
 	</section>
